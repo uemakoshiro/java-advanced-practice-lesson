@@ -3,7 +3,32 @@
   pageEncoding="UTF-8"%>
 <%
   //必要な処理を記述してください。
-
+  request.setCharacterEncoding("UTF-8");
+  String id = request.getParameter("userId");
+  String name = request.getParameter("userName");
+  String age = request.getParameter("age");
+  
+  int ageInt = Integer.parseInt(age);
+  
+  final int MAX_USER = 5;
+  String result = "これ以上ユーザーを登録できません";
+  
+  User[] users = (User[])session.getAttribute("users");
+  
+  if (users == null) {
+      users = new User[MAX_USER];
+  }
+  
+  for(int i = 0;i < users.length;i++){
+	  if(users[i] == null){
+		  users[i] = new User(id,name,ageInt);
+		  result = "ユーザーを登録しました";
+		  break;
+	  }
+  }
+  
+  session.setAttribute("users",users);
+  
 %>
 <!DOCTYPE html>
 <html>
@@ -50,13 +75,9 @@ a.button {
         // 現在のユーザー情報を表示
         for (User tempUser : users) {
             if (tempUser != null) {
-                // ユーザー情報を取得
-                // todo:
-                // 現在は変数のみ定義している。
-                // Userクラスの情報取得用メソッドを呼んだ値をセットするように修正。
-                String msg = "";
+                
+                String msg = tempUser.returnUserInfo();
 
-                // ユーザー情報表示
                 out.println(msg);
                 out.println("<br>");
             }

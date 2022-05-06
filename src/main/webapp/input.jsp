@@ -2,7 +2,10 @@
   pageEncoding="UTF-8"%>
 <%
     // 必要な処理を記述してください。
-
+	String btn = request.getParameter("btn");
+	if("reset".equals(btn)){
+		session.removeAttribute("users");
+	}
 %>
 <!DOCTYPE html>
 <html>
