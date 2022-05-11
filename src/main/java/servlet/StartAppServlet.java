@@ -1,7 +1,5 @@
-package java.servlet;
+package servlet;
 
-import java.app.CardGameApp;
-import java.app.GameApp;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -9,6 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import app.App;
+import app.CardGameApp;
+import app.ClockApp;
+import app.DartsGameApp;
 
 /**
  * Servlet implementation class StartAppServlet
@@ -42,22 +45,31 @@ public class StartAppServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 	    String name = request.getParameter("name");
+	    if(name.isEmpty()) {
+		    request.getRequestDispatcher("/appStart.jsp").forward(request, response);
+	    }
 	    String app = request.getParameter("app");
 
-	    String result = "";
-	    GameApp item;
+	    String result = "アプリの実行に失敗しました。";
+	    App item = new CardGameApp();
+	    
 	    if("card".equals(app)) {
-	    	item = new CardGameApp("トランプ");
-	    }else {
 	    	item = new CardGameApp();
-	    }
-
-	    if (name != null && !name.isEmpty()) {
-	    	result = item.start(name);
+	    	result = lock(item, name);
+	    }else if("darts".equals(app)) {
+	    	item = new DartsGameApp();
+	    	result = lock(item, name);
+	    }else if("clock".equals(app)) {
+	    	item = new ClockApp();
+	    	result = lock(item, name);
 	    }
 	    
 	    request.setAttribute("result", result);
 	    request.getRequestDispatcher("/appStart.jsp").forward(request, response);
+	}
+
+	private String lock(App item, String name) {
+		return item.start(name);
 	}
 
 }

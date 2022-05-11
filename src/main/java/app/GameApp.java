@@ -1,6 +1,6 @@
 package app;
 
-public class GameApp {
+public abstract class GameApp implements App {
 	public String item = "何か";
 	
 	public GameApp() {}
@@ -9,7 +9,9 @@ public class GameApp {
 		this.item = item;
 	}
 	
+	public abstract String play();
+	
 	public String start(String name) {
-		return (name + "さんと" + this.item + "でゲームを開始します");
+		return (name + "さんと" + this.item + "でゲームを開始します。"+play());
 	}
 }

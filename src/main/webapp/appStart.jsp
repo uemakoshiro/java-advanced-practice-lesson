@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Java応用_演習問題3</title>
+<title>Java応用_演習問題4</title>
 <style>
 body {
 border: solid 2px #000080;
@@ -24,7 +24,7 @@ padding: 10px;
 </head>
 <body>
 
-<h1>Java応用 - 演習問題3</h1>
+<h1>Java応用 - 演習問題4</h1>
 
 <h2>ゲームアプリ実行ページ</h2>
 
@@ -41,7 +41,9 @@ padding: 10px;
   <br>
   <label>アプリ：</label>
   <input type="radio" name="app" value="card" checked>トランプ
-  <input type="radio" name="app" value="game">ゲーム
+  <input type="radio" name="app" value="darts">ダーツ
+  <input type="radio" name="app" value="clock">時計
+  <input type="radio" name="app" value="other">その他
   <br>
   <button type="submit">実行</button>
 </form>
