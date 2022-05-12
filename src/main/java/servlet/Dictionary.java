@@ -16,14 +16,15 @@ public class Dictionary {
     public Dictionary() {
 
     	dictionaryInfo = new HashMap<String, String>();
+    	dictionaryInfo.put("apple","りんご");
+    	dictionaryInfo.put("orange","みかん");
+    	dictionaryInfo.put("peach","もも");
+    	dictionaryInfo.put("grape","ぶどう");
+    	dictionaryInfo.put("pear","なし");
     	
-    	// ここに英単語情報を登録する処理を記述してください。
-
     }
 
-
-
-    public void setDictionaryInfo(HashMap<String, String> dictionaryInfo) {
+	public void setDictionaryInfo(HashMap<String, String> dictionaryInfo) {
         this.dictionaryInfo = dictionaryInfo;
     }
 

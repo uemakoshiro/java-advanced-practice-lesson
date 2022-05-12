@@ -1,4 +1,4 @@
-package app;
+package main.java.jp.co.axiz.app;
 
 /**
  * アプリクラスに共通するメソッドを定義するためのインターフェース

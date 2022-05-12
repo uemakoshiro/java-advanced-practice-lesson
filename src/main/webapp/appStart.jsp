@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Java応用_演習問題4</title>
+<title>Java応用_演習問題5</title>
 <style>
 body {
 border: solid 2px #000080;
@@ -24,7 +24,7 @@ padding: 10px;
 </head>
 <body>
 
-<h1>Java応用 - 演習問題4</h1>
+<h1>Java応用 - 演習問題5</h1>
 
 <h2>ゲームアプリ実行ページ</h2>
 
@@ -32,6 +32,11 @@ padding: 10px;
   <div class="result">
     <h3>アプリの実行結果</h3>
     <p>${requestScope.result}</p>
+    <c:if test="${not empty playTime}">
+  		<div class="playTime">
+    		<p>実行時間：${requestScope.playTime}分</p>
+  		</div>
+	</c:if>
   </div>
 </c:if>
 

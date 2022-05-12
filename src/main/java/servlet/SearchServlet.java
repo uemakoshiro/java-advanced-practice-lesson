@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  * Servlet implementation class StartAppServlet
  */
@@ -30,7 +29,17 @@ public class SearchServlet extends HttpServlet {
             throws ServletException, IOException {
     	
     	// ここに必要な処理を記述してください。
-
+    	request.setCharacterEncoding("UTF-8");
+    	String english = request.getParameter("english");
+    	if(english.isEmpty()) {
+    		request.getRequestDispatcher("dictionary.jsp").forward(request, response);
+    	}
+    	Dictionary dic = new Dictionary();
+    	String result = "見つかりませんでした";
+    	if (dic.getDictionaryInfo().containsKey(english)) {
+            result = "英語："+ english + "、日本語："+ dic.getDictionaryInfo().get(english);
+        }  
+    	request.setAttribute("result", result);
         request.getRequestDispatcher("dictionary.jsp").forward(request, response);
     }
 

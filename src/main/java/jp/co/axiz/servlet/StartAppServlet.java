@@ -1,4 +1,4 @@
-package servlet;
+package main.java.jp.co.axiz.servlet;
 
 import java.io.IOException;
 
@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import app.App;
-import app.CardGameApp;
-import app.ClockApp;
-import app.DartsGameApp;
+import jp.co.axiz.app.App;
+import jp.co.axiz.app.CardGameApp;
+import jp.co.axiz.app.ClockApp;
+import jp.co.axiz.app.DartsGameApp;
+import jp.co.axiz.app.GameApp;
 
 /**
  * Servlet implementation class StartAppServlet
@@ -49,19 +50,24 @@ public class StartAppServlet extends HttpServlet {
 		    request.getRequestDispatcher("/appStart.jsp").forward(request, response);
 	    }
 	    String app = request.getParameter("app");
-
+	    
 	    String result = "アプリの実行に失敗しました。";
 	    App item = new CardGameApp();
 	    
 	    if("card".equals(app)) {
-	    	item = new CardGameApp();
+	    	item = new CardGameApp("トランプ");
 	    	result = lock(item, name);
 	    }else if("darts".equals(app)) {
-	    	item = new DartsGameApp();
+	    	item = new DartsGameApp("ダーツ");
 	    	result = lock(item, name);
 	    }else if("clock".equals(app)) {
 	    	item = new ClockApp();
 	    	result = lock(item, name);
+	    }
+	    
+	    if(item instanceof GameApp) {
+	    	GameApp gameApp = (GameApp)item;
+	    	request.setAttribute("playTime", gameApp.getPlayTime());
 	    }
 	    
 	    request.setAttribute("result", result);
