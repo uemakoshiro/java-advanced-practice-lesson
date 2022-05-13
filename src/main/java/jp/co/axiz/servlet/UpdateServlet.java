@@ -1,4 +1,4 @@
-package app;
+package jp.co.axiz.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
